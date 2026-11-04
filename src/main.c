@@ -1,10 +1,15 @@
+#define FENSTER_IMPL
+
 #include <stdio.h>
 
 #include "../headers/renderer.h"
 #include "../headers/input_manager.h"
+#include "../headers/simulator.h"
 
 int main(void) {
     fenster_open(&f);
+
+    r_set_pixel(100, 100, rgbcolor(255, 255, 0));
 
     uint32_t t = 0;
     int64_t now = fenster_time();
@@ -13,14 +18,16 @@ int main(void) {
 
         if (im_get_key_down(KC_A)) printf("A pressed");
 
-        for (int i = 0; i < FW; i++) {
-            for (int j = 0; j < FH; j++) {
-                r_set_pixel(i, j, COLOR_RED);
-            }
-        }
+        r_clear();
+
+        r_set_pixel(100, 100, SAND);
+
+        s_run();
+
+        r_present();
 
         const int64_t time = fenster_time();
-        if (time - now < 1000 / 60) fenster_sleep(time - now);
+        //if (time - now < 1000 / 60) fenster_sleep(1000 / 60 - (time - now));
         now = time;
     }
 

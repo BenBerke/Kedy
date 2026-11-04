@@ -230,9 +230,11 @@ FENSTER_API int fenster_open(struct fenster *f) {
   wc.hInstance = hInstance;
   wc.lpszClassName = f->title;
   RegisterClassEx(&wc);
+  RECT r = {0, 0, f->width, f->height};
+  AdjustWindowRectEx(&r, WS_OVERLAPPEDWINDOW, FALSE, WS_EX_CLIENTEDGE);
   f->hwnd = CreateWindowEx(WS_EX_CLIENTEDGE, f->title, f->title,
                            WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
-                           f->width, f->height, NULL, NULL, hInstance, NULL);
+                           r.right - r.left, r.bottom - r.top, NULL, NULL, hInstance, NULL);
 
   if (f->hwnd == NULL)
     return -1;

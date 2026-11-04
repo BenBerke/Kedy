@@ -9,10 +9,6 @@
 
 #include "../globals.h"
 
-#define FW 960
-#define FH 600
-#define SS (FW * FH)
-
 #define COLOR_BLACK 0xFFFFFFFF
 #define COLOR_WHITE 0x00000000
 #define COLOR_RED 0xFFFF0000
@@ -22,9 +18,10 @@
 typedef uint32_t color;
 
 // Color format ARGB
-extern color fb[FW * FH];
+extern color bb[SS]; // backbuffer
 
 static FORCE_INLINE void r_clear() { memset(f.buf, 0, SS); }
-static FORCE_INLINE void r_set_pixel(const uint16_t x, const uint16_t y, const color c) { fenster_pixel(&f, x, y) = c; }
+static FORCE_INLINE void r_set_pixel(const uint16_t x, const uint16_t y, const color c) { bbcord = c; }
+static FORCE_INLINE void r_present() { memcpy(f.buf, bb, SS * sizeof(color)); }
 
 #endif //KEDY_RENDERER_H

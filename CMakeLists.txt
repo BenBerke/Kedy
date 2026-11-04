@@ -9,4 +9,7 @@ add_executable(Kedy src/main.c
         src/renderer.c
         globals.h
         headers/input_manager.h
-        src/input_manager.c)
+        src/input_manager.c
+        headers/simulator.h
+        src/simulator.c
+)

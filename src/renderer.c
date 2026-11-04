@@ -2,10 +2,10 @@
 // Created by berke on 11/4/2026.
 //
 
-#define FENSTER_HEADER
 #include "../headers/renderer.h"
 
-color fb[FW * FH];
+color fb[SS];
+color bb[SS];
 
 fenster f = {
     .title = "Kedy",

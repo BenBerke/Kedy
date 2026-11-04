@@ -5,6 +5,9 @@
 #ifndef KEDY_GLOBALS_H
 #define KEDY_GLOBALS_H
 
+#ifndef FENSTER_IMPL
+#define FENSTER_HEADER
+#endif
 #include "headers/fenster.h"
 
 typedef struct fenster fenster;
@@ -22,5 +25,15 @@ extern fenster f;
 #define bool _Bool
 #define true 1
 #define false 0
+
+#define FW 960
+#define FH 600
+#define SS (FW * FH)
+
+#define bufcord f.buf[x + y * FW]
+#define bbcord bb[x + y * FW]
+#define rgbcolor(r, g, b) (0xFF000000 | ((r) << 16) | ((g) << 8) | (b))
+
+#define printl(fmt,...) printf(fmt "\n", ##__VA_ARGS__);
 
 #endif //KEDY_GLOBALS_H
